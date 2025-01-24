@@ -10,4 +10,12 @@ class Track extends Model
     use HasFactory;
 
     protected $fillable = ['name', 'img', 'description'];
+
+
+    function students()
+    {
+        return $this->hasMany(Student::class, 'track_student', 'track_id', '
+        .student_id');
+        }
+
 }

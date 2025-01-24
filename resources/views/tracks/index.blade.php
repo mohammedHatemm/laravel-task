@@ -41,6 +41,7 @@
 <td>{{ $track->name }}</td>
 <td>{{ $track->description }}</td>
 <td>
+<a href="{{ route('tracks.show', $track) }}" class="btn btn-info btn-sm">View</a>
 <a href="{{ route('tracks.edit', $track) }}" class="btn btn-sm btn-primary">Edit</a>
 <form action="{{ route('tracks.destroy', $track) }}" method="POST" class="d-inline">
 @csrf

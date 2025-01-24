@@ -24,7 +24,7 @@ class TrackController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'img' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         $imageName = time().'.'.$request->img->extension();
@@ -33,7 +33,7 @@ class TrackController extends Controller
         Track::create([
             'name' => $request->name,
             'description' => $request->description,
-            'img' => $imageName
+            'image' => $imageName
         ]);
 
         return redirect()->route('tracks.index')->with('success', 'Track created successfully.');
@@ -49,10 +49,10 @@ class TrackController extends Controller
         $request->validate([
             'name' => 'required',
             'description' => 'required',
-            'img' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
+            'image' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
-        if ($request->hasFile('img')) {
+        if ($request->hasFile('image')) {
             if (file_exists(public_path('images/'.$track->img))) {
                 unlink(public_path('images/'.$track->img));
             }
@@ -77,4 +77,11 @@ class TrackController extends Controller
 
         return redirect()->route('tracks.index')->with('success', 'Track deleted successfully.');
     }
+
+
+
+public function show(Track $track)
+{
+    return view('tracks.show', compact('track'));
+}
 }

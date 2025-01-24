@@ -5,7 +5,7 @@
 <body>
 <x-navbar title="My Navbar" />
 
-<h1 class="text-success mx-5 my-3">Create New Student</h1>
+<h1 class="text-success mx-5 my-3">Create New couses</h1>
 
 <div class="container">
     <div class="row">
