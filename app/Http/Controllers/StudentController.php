@@ -32,26 +32,36 @@ class StudentController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store()
     {
-        $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'image' => 'required|mimes:jpg,jpeg,png,gif',
-            'gender' => 'required'
-        ]);
+        // $request->validate([
+        //     'name' => 'required',
+        //     'email' => 'required',
+        //     'image' => 'required|mimes:jpg,jpeg,png,gif',
+        //     'gender' => 'required'
+        // ]);
 
-        $imageName = time() . '.' . $request->image->extension();
-        $request->image->move(public_path('images'), $imageName);
+        // $imageName = time() . '.' . $request->image->extension();
+        // $request->image->move(public_path('images'), $imageName);
 
-        Student::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'image' => $imageName,
-            'gender' => $request->gender
-        ]);
+        // Student::create([
+        //     'name' => $request->name,
+        //     'email' => $request->email,
+        //     'image' => $imageName,
+        //     'gender' => $request->gender
+        // ]);
 
-        return redirect()->route('students.index')->with('success', 'Student created successfully');
+        // return redirect()->route('students.index')->with('success', 'Student created successfully');
+        $requestData = request()->all();
+
+        $student = new Student();
+        $student-> name = $requestData['name'];
+        $student-> email = $requestData['email'];
+        $student-> gender = $requestData['gender'];
+        $student-> image = $requestData['image'];
+        $student-> track_id = $requestData['track_id'];
+        $student->save();
+        return to_route('students.index');
     }
 
     /**
