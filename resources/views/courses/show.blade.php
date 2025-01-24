@@ -13,6 +13,15 @@
                     <img src="{{ asset('images/'.$course->logo) }}" class="img-fluid mb-3" style="max-width: 200px">
                     <p><strong>Description:</strong></p>
                     <p>{{ $course->description }}</p>
+
+
+@foreach($course -> students as $student)
+<th>
+<td>{{ $student->id }}</td>
+<td>{{ $student->name }}</td>
+</th>
+@endforeach
+
                     <a href="{{ route('courses.index') }}" class="btn btn-primary">Back</a>
 
                 </div>

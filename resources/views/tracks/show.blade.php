@@ -14,6 +14,16 @@
                     <p><strong>Description:</strong></p>
                     <p>{{ $track->description }}</p>
 
+@foreach($track -> students as $student)
+<tr>
+    <td>{{$student ->id}}</td>
+    <td> {{$student ->name}}</td>
+</tr>
+@endforeach
+
+
+
+
 
                     <a href="{{ route('tracks.index') }}" class="btn btn-info btn-sm">back</a>
 
